@@ -1,0 +1,223 @@
+.calendar-rec > .slot {
+	padding: 5px !important;
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	border-radius: 6px !important;
+}
+
+.calendar-rec > .empty_slot {
+	background-color: rgb(209 253 207) !important;
+}
+
+.calendar-rec > .busy_slot {
+	background-color: rgb(255 234 172) !important;
+}
+
+.calendar-rec > .depricated_slot {
+	background-color: #ffd7df !important;
+}
+
+.calendar-rec > .depricated2_slot {
+	background-color: #f2f2f2 !important;
+	color: #aeaeae !important;
+}
+
+.clickable {
+	cursor: pointer !important;
+}
+
+.calendar-rec {
+	padding: 2px !important;
+	border-radius: 6px !important;
+}
+
+.calendar-rec:hover > .slot {
+	font-weight: bold !important;
+}
+
+.calendar-rec > .clear_slot {
+	background: none !important;
+}
+
+.calendar-rec > .warned_slot {
+	background-color: #ffd7df !important;
+	font-weight: bold !important;
+}
+
+.sponge-bob > div, .visit-stats > span {
+	width: 46px !important;
+	height: 46px !important;
+	border: solid !important;
+	border-width: 2px !important;
+	border-color: rgba(0,0,0,0) !important;
+	padding: 6px !important !important;
+	border-radius: 6px !important;
+	// transition: 0.15s !important;
+}
+
+.sponge-bob > .bob-divider, .es-divider {
+	background-color: rgb(56, 124, 87) !important;
+	color: rgb(255,255,255) !important;
+}
+
+.sponge-bob > div:hover {
+	border-color: rgba(50, 50, 50, 1) !important;
+}
+
+// .feed-element:hover {
+// 	background-color: rgb(240,240,240) !important;
+// }
+
+.popover {
+	border-radius: 8px !important;
+}
+
+.popover-content > div > dl {
+	background-color: rgb(248,248,248) !important;
+	padding: 5px !important;
+	padding-left: 6px !important;
+	padding-right: 6px !important;
+	border-radius: 6px !important;
+	width: auto !important;
+}
+
+.popover-content > div > dl:hover {
+	background-color: rgb(240,240,240) !important;
+}
+
+.popover-content > div > dl > dt {
+	width: 90px !important;
+}
+
+.float-e-margins > .ibox-content > div.row {
+	padding: 5px !important;
+	background-color: rgb(248,248,248) !important;
+	border-radius: 6px !important;
+	margin-bottom: 6px !important;
+}
+.float-e-margins > .ibox-content > div.row:hover {
+	background-color: rgb(240,240,240) !important;
+}
+
+div.col-xs-7.m-b-xs.text-right > a.btn.btn-xs.btn-primary {
+	width: 25px !important;
+	height: 25px !important;
+	padding: 3px !important;
+	border-radius: 6px !important;
+	margin-left: 3px !important;
+	margin-bottom: 3px !important;
+}
+
+.ibox-content, .panel-body {
+	border-radius: 8px !important;	
+}
+
+.nav-tabs > li.active > a {
+	border-radius: 8px 8px 0 0 !important;
+}
+
+
+.btn, .chosen-container > a, .col-sm-12, li > strong.label, .form-control { 
+	border-radius: 6px !important;
+}
+
+
+.detected-nakladi {
+	margin-top: 10px !important;
+	font-size: 20px !important;
+}
+.riznyza {
+	font-size: 12px !important;
+	color: rgb(170, 170, 170) !important;
+}
+ul > center { 
+	font-size: 13 !important;
+	margin-top: 8px !important;
+}
+
+
+.ky-comment {
+	border-radius: 8px !important;
+	padding: 8px !important;
+}
+.comment-teacher {
+	background-color: #CCFFCC !important;
+}
+.comment-curator {
+	background-color: #CCE5FF !important;
+}
+.comment-system {
+	background-color: rgb(240, 240, 240) !important;
+}
+.comment-customer {
+	background-color: #FFFFC7 !important;
+}
+
+
+
+
+
+
+.dropdown-menu > li > a, .dropdown-menu > li > input, .dropdown-menu > li > button {
+  border-radius: 1px !important;
+  color: inherit !important;
+  line-height: 25px !important;
+  margin: 4px !important;
+  text-align: left !important;
+  font-weight: normal !important;
+}
+
+.dropdown-menu > li > input, .dropdown-menu > li > button {
+  display: inline-block !important;
+  clear: both !important;
+  font-weight: 400 !important;
+  line-height: 1.42857143 !important;
+  color: #333 !important;
+  white-space: nowrap !important;
+	height: 28px !important;
+  border-radius: 3px !important;
+  border: 1px solid #e5e6e7 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s !important;
+}
+
+.dropdown-menu > li > input {
+	width: calc(100% - 8px) !important;
+  padding: 3px 20px !important;
+}
+
+.dropdown-menu > li > button {
+  width: 30px !important;
+}
+
+.dropdown-menu > li > input:focus {
+	outline: none !important;
+	border-color: #1ab394 !important;
+  border-width: 1px !important;
+}
+
+p.kudatuda {
+	font-size: 13px !important;
+	font-weight: 500 !important;
+}
+p > b {
+	font-weight: 800 !important;
+}
+p > button {
+  width: 30px !important;
+  // height: 25px !important;
+  padding: 3px !important;
+  border-radius: 6px !important;
+  margin-left: 3px !important;
+  margin-bottom: 3px;
+  background-color: #1ab394 !important;
+  border-color: #1ab394 !important;
+  color: #FFFFFF !important;
+	border: none !important;
+}
+
+.modifcation-btn {
+	// background-color: #a1c1ff !important;	
+	font-weight: 1000 !important;
+}
