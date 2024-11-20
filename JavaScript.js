@@ -44,7 +44,7 @@ let iboxcontent = document.getElementsByClassName("nav metismenu")[0]
 
 
 // dropdown btn-group no-padding
-iboxcontent.innerHTML += "<li class='modifcation-btn dropdown'>"+"<a class='dropdown-toggle' data-toggle='dropdown'>"+"<i class=ion-wrench></i><span class=hidden-xs>Модифікація</span> "+"<span class=caret></span>"+"</a>"+"<ul class=dropdown-menu>" +                                                                                                                           "<li><input type=text class='crm-ajax-link mod-btn mod-input-client' placeholder='Пошук клієнта...'></input><li>" + "<li><input type=text class='crm-ajax-link mod-btn mod-input-lead' placeholder='Пошук ліда...'></a><li>" + "<li><input type=text class='crm-ajax-link mod-btn mod-input-pedagog' placeholder='Пошук педагога...'></input><li>"         + "<li class=divider></li>"                                                                                                                                                       + "<li><a class='crm-ajax-link mod-btn modification-change-graphic-mode' href=#></a><li>" + "<li><a class='crm-ajax-link mod-btn modification-change-comments-mode' href=#></a><li>" +      "<li class=divider></li>"                    + "<li><a class='crm-ajax-link mod-btn modification-change-dedicate-able' href=#></a><li>" + "<li><a class='crm-ajax-link mod-btn modification-change-copy-able' href=#></a><li>"   + "<li class=divider></li>"    +   "<li><a class='crm-ajax-link mod-btn modification-change-quick-urls' href=#></a><li>"   +   "<li><a class='crm-ajax-link mod-btn modification-change-detect-nakladki' href=#></a><li>"  + "<li class=divider></li>" +                                                                                       "<li><a class='crm-ajax-link mod-btn modification-pidrahunok-hodyn' href=#></a><li>" +                                                                                                                                          "<li class=divider></li>" + "<li><a class='crm-ajax-link mod-btn modification-support href='#'><i class='glyph-icon flaticon-telegram'></i> Виникла проблема</a><li>" + "<li><a class='crm-ajax-link mod-btn modification-tech href='#'><i class='glyph-icon flaticon-telegram'></i> Технічний відділ</a><li>" +"</ul>"+"</li>"
+iboxcontent.innerHTML += "<li class='modifcation-btn dropdown'>"+"<a class='dropdown-toggle' data-toggle='dropdown'>"+"<i class=ion-wrench></i><span class=hidden-xs>Модифікація</span> "+"<span class=caret></span>"+"</a>"+"<ul class=dropdown-menu>" +                                                                                                                           "<li><input type=text class='crm-ajax-link mod-btn mod-input-client' placeholder='Пошук клієнта...'></input><li>" + "<li><input type=text class='crm-ajax-link mod-btn mod-input-lead' placeholder='Пошук ліда...'></a><li>" + "<li><input type=text class='crm-ajax-link mod-btn mod-input-pedagog' placeholder='Пошук педагога...'></input><li>"         + "<li class=divider></li>"                                                                                                                                                       + "<li><a class='crm-ajax-link mod-btn modification-change-graphic-mode' href=#></a><li>" + "<li><a class='crm-ajax-link mod-btn modification-change-comments-mode' href=#></a><li>" +      "<li class=divider></li>"                    + "<li><a class='crm-ajax-link mod-btn modification-change-dedicate-able' href=#></a><li>" + "<li><a class='crm-ajax-link mod-btn modification-change-copy-able' href=#></a><li>"   + "<li class=divider></li>"    +   "<li><a class='crm-ajax-link mod-btn modification-change-quick-urls' href=#></a><li>"   +   "<li><a class='crm-ajax-link mod-btn modification-change-detect-nakladki' href=#></a><li>"  + "<li class=divider></li>" +                                                                                                                            "<li><a class='crm-ajax-link mod-btn modification-pidrahunok-hodyn' href=#></a><li>" + "<li><a class='crm-ajax-link mod-btn modification-one-auto-perehod' href=#></a><li>" +                                                                                                                                                                                                                 "<li class=divider></li>" + "<li><a class='crm-ajax-link mod-btn modification-support href='#'><i class='glyph-icon flaticon-telegram'></i> Виникла проблема</a><li>" + "<li><a class='crm-ajax-link mod-btn modification-tech href='#'><i class='glyph-icon flaticon-telegram'></i> Технічний відділ</a><li>" +"</ul>"+"</li>"
 
 
 
@@ -108,7 +108,6 @@ function submitSearch(what, arg) {
 	} else if (what == "pedagog") {
 		window.location.href = searchPedagogByName(arg)
 	}
-	console.log("search submit", what, searchType, arg)
 }
 
 
@@ -266,6 +265,46 @@ changePidrahunokHodyn.onclick = function(){
 
 
 
+// modification-one-auto-perehod
+let changeOneAutoPerehod = document.getElementsByClassName("modification-one-auto-perehod")[0]
+var currentOneAutoPerehod = localStorage.getItem("modificationOneAutoPerehod") == "true";
+changeOneAutoPerehod.textContent = "Авто переход, якщо один варіант: "
+changeOneAutoPerehod.textContent += currentOneAutoPerehod ? "✅" : "❌"
+
+changeOneAutoPerehod.onclick = function(){
+	localStorage.setItem("modificationOneAutoPerehod", !currentOneAutoPerehod)
+	window.location.reload();
+}
+
+
+
+
+
+
+
+
+
+if (currentOneAutoPerehod) {
+	let kvtable = document.getElementsByClassName("kv-grid-table")[0]
+	if (kvtable) {
+		let elems = kvtable.getElementsByTagName("tbody")[0].getElementsByTagName("tr")
+		if (elems.length == 1) {
+			let id = elems[0].dataset.key
+			if (currentUrl.includes("employee")) {
+				let pnewUrl = newUrl+"/employee/view?id="+id
+				window.location.href = pnewUrl
+			} else if (currentUrl.includes("customer")) {
+				let cnewUrl = newUrl+"/customer/view?id="+id
+				window.location.href = cnewUrl
+			}
+		}
+	}
+}
+
+
+
+
+
 
 
 
@@ -314,12 +353,14 @@ for (var i = 0; i < divs.length; i++) {
 					.getElementsByTagName('small')[0];
 			var normalW = weekDay.innerText || weekDay.textContent;
 			var realW = normalW.split('\n')[1].split('.');
+			var realWname = normalW.split(",")[0]
 			var mrealW = realW[0] + '.' + realW[1];
 			
 			let vstupIcon = d.getElementsByClassName("ion-asterisk")[0]
 			let urokType = "плановий"
 			if (vstupIcon) urokType = "вступний";
 			let chas = splittedD[0].split(":")
+			let chas2 = splittedD[2].split(":")
 			let imena = splittedD
 			imena.shift()
 			imena.shift()
@@ -330,7 +371,8 @@ for (var i = 0; i < divs.length; i++) {
 			imena = imena.join(" ").trimEnd();
 			
 			if (parent.style.textDecoration !== 'line-through'){
-				slots.push([d, [parseInt(realW[0]), parseInt(realW[1])], [parseInt(chas[0]),parseInt(chas[1])], urokType, imena])
+				let slotInfo = [d, [parseInt(realW[0]), parseInt(realW[1]), realWname], [parseInt(chas[0]),parseInt(chas[1]),parseInt(chas2[0]),parseInt(chas2[1])], urokType, imena]
+				slots.push(slotInfo)
 			}
 		
 			if ((currentCopyAble || currentQuickUrls) && (!d.textContent.includes('порожньо') && parent.style.textDecoration !== 'line-through')){
@@ -339,7 +381,6 @@ for (var i = 0; i < divs.length; i++) {
 					if (currentCopyAble) {
 						var toCopy = mainName + ' - ' + hisTime + ' ' + mrealW;
 						navigator.clipboard.writeText(toCopy);
-						console.log('Copied:', toCopy);
 					};
 					
 					if (currentQuickUrls) {
@@ -423,33 +464,82 @@ if (currentPidrahunokHodyn) {
 	let zahalHodyny = 0
 	let hodynyDo14 = 0
 	let hodynyPislya14 = 0
+	let hodynyVyhidni = 0
 	
 	let zaynatiHodyny = 0
 	let zaynatiDo14 = 0
 	let zaynatiPislya14 = 0
+	let zaynatiVyhidni = 0
 	
 	function getHodyny() {
 		let graphic = document.getElementsByClassName("crm-hover-block crm-modal-btn p-xxs")[0].getElementsByClassName("row")
 		for (var i = 0; i < graphic.length; i++) {
 			(function (row) {
 				let myText = row.getElementsByClassName("col-xs-11")[0].getElementsByTagName("small")[0].innerText.split(", ")
+				let weekname = row.getElementsByClassName("col-xs-1 text-center")[0].getElementsByTagName("big")[0].textContent.trim()
+				let hodynyInsert = []
 
-		    myText.forEach(interval => {
-		        let [start, end] = interval.split(" – ").map(time => parseInt(time.split(":")[0]));
-		        
-		        let itr = ((end-start)==1 ? 1 : (end-start)+1);
-		        
-		        if (start < 14 && end < 14) {
-		        	hodynyDo14 += itr;
-		        } else if (start < 14 && end >= 14) {
-		        	hodynyDo14 += 14-start
-		        	hodynyPislya14 += end-13
-		        } else if (start >= 14 && end >= 14) {
-		        	hodynyPislya14 += itr;
-		        }
-		        
-		        zahalHodyny += itr;
-		    });
+		   	myText.forEach(interval => {
+					let [start, end] = interval.split(" – ").map(time => parseInt(time.split(":")[0]));
+					
+					if (end-start == 1) {
+						if (!hodynyInsert.includes(start)){
+							hodynyInsert.push(start)
+							zahalHodyny += 1;
+							if (weekname == "Сб" || weekname == "Нд") {
+									hodynyVyhidni += 1;
+							} else {
+								if (start <= 14) {
+									hodynyDo14 += 1;
+								} else {
+									hodynyPislya14 += 1;
+								}
+							}
+						} 
+						if (!hodynyInsert.includes(end)) {
+							hodynyInsert.push(end)
+							zahalHodyny += 1;
+							if (weekname == "Сб" || weekname == "Нд") {
+									hodynyVyhidni += 1;
+							} else {
+								if (end <= 14) {
+									hodynyDo14 += 1;
+								} else {
+									hodynyPislya14 += 1;
+								}
+							}
+						}
+					} else {
+						for (var i = start; i <= end; i++) {
+							if (!hodynyInsert.includes(i)){
+								hodynyInsert.push(i)
+								zahalHodyny += 1;
+								if (weekname == "Сб" || weekname == "Нд") {
+									hodynyVyhidni += 1;
+								} else {
+									if (i <= 14) {
+										hodynyDo14 += 1;
+									} else {
+										hodynyPislya14 += 1;
+									}	
+								}
+							}
+						}
+					}
+					
+					// let itr = ((end-start)==1 ? 1 : (end-start)+1);
+					
+					// if (start < 14 && end < 14) {
+					// 	hodynyDo14 += itr;
+					// } else if (start < 14 && end >= 14) {
+					// 	hodynyDo14 += 14-start
+					// 	hodynyPislya14 += end-13
+					// } else if (start >= 14 && end >= 14) {
+					// 	hodynyPislya14 += itr;
+					// }
+					
+					// zahalHodyny += itr;
+		   	});
 				
 			})(graphic[i]);
 		}
@@ -460,20 +550,26 @@ if (currentPidrahunokHodyn) {
 		
 		for (var i = 0; i < slots.length; i++) {
 			let slot = slots[i]
+			let weekName = slot[1][2]
 			if (slot[3] == "плановий") {
 				zaynatiHodyny += 1
-				console.log(slot[2][0])
-				if (slot[2][0] < 14) {
-					zaynatiDo14 += 1;
+				
+				if (slot[2][0] <= 14) {
+					if (weekName != "Субота" && weekName != "Неділя") {
+						zaynatiDo14 += 1;
+					} else {
+						zaynatiVyhidni += 1
+					}
 				} else {
-					zaynatiPislya14 += 1
+					if (weekName != "Субота" && weekName != "Неділя") {
+						zaynatiPislya14 += 1
+					} else {
+						zaynatiVyhidni += 1
+					}
 				}
+			} else if (slot[3] == "вступний" && slot[4] != "(порожньо)") {
 			}
 		}
-	} 
-	
-	function copyVal(val) {
-		navigator.clipboard.writeText(val);
 	}
 	
 	rozkladDiv.getElementsByTagName('h4')[0].innerHTML += "<br><br>Підрахунок годин<p class=kudatuda></p>"
@@ -482,17 +578,28 @@ if (currentPidrahunokHodyn) {
 	getHodyny()
 	getZaynyati()
 	
-	kuda.innerHTML += "<br>Всього годин по графіку: <button onclick=copyVal("+zahalHodyny+")>"+zahalHodyny+"</button>"
-	kuda.innerHTML += "<br>Всього <b>зайнятих</b> годин по графіку: <button onclick=copyVal("+zaynatiHodyny+")>"+zaynatiHodyny+"</button>"
-	kuda.innerHTML += "<br>Всього <b>вільних</b> годин по графіку: <button onclick=copyVal("+(zahalHodyny-zaynatiHodyny)+")>"+(zahalHodyny-zaynatiHodyny)+"</button><br>"
+	if (zahalHodyny == 0 && zaynatiHodyny > 0) {
+		zahalHodyny = zaynatiHodyny
+		hodynyDo14 = zaynatiDo14
+		hodynyPislya14 = zaynatiPislya14
+		hodynyVyhidni = zaynatiVyhidni
+	}
 	
-	kuda.innerHTML += "<br>Всього годин ДО 14:00: <button onclick=copyVal("+hodynyDo14+")>"+hodynyDo14+"</button>"
-	kuda.innerHTML += "<br><b>Зайнятих</b> годин ДО 14:00: <button onclick=copyVal("+zaynatiDo14+")>"+zaynatiDo14+"</button>"
-	kuda.innerHTML += "<br><b>Вільних</b> годин ДО 14:00: <button onclick=copyVal("+(hodynyDo14-zaynatiDo14)+")>"+(hodynyDo14-zaynatiDo14)+"</button><br>"
+	kuda.innerHTML += "<br>Всього годин по графіку: <button>"+zahalHodyny+"</button>"
+	kuda.innerHTML += "<br>Всього <b>зайнятих</b> годин по графіку: <button>"+zaynatiHodyny+"</button>"
+	kuda.innerHTML += "<br>Всього <b>вільних</b> годин по графіку: <button>"+(zahalHodyny-zaynatiHodyny)+"</button><br>"
 	
-	kuda.innerHTML += "<br>Всього годин ПІСЛЯ 14:00: <button onclick=copyVal("+hodynyPislya14+")>"+hodynyPislya14+"</button>"
-	kuda.innerHTML += "<br><b>Зайнятих</b> годин ПІСЛЯ 14:00: <button onclick=copyVal("+zaynatiPislya14+")>"+zaynatiPislya14+"</button>"
-	kuda.innerHTML += "<br><b>Вільних</b> годин ПІСЛЯ 14:00: <button onclick=copyVal("+(hodynyPislya14-zaynatiPislya14)+")>"+(hodynyPislya14-zaynatiPislya14)+"</button>"
+	kuda.innerHTML += "<br>Всього годин ДО 14:00 (Будні): <button>"+hodynyDo14+"</button>"
+	kuda.innerHTML += "<br><b>Зайнятих</b> годин ДО 14:00 (Будні): <button>"+zaynatiDo14+"</button>"
+	kuda.innerHTML += "<br><b>Вільних</b> годин ДО 14:00 (Будні): <button>"+(hodynyDo14-zaynatiDo14)+"</button><br>"
+	
+	kuda.innerHTML += "<br>Всього годин ПІСЛЯ 14:00 (Будні): <button>"+hodynyPislya14+"</button>"
+	kuda.innerHTML += "<br><b>Зайнятих</b> годин ПІСЛЯ 14:00 (Будні): <button>"+zaynatiPislya14+"</button>"
+	kuda.innerHTML += "<br><b>Вільних</b> годин ПІСЛЯ 14:00 (Будні): <button>"+(hodynyPislya14-zaynatiPislya14)+"</button><br>"
+	
+	kuda.innerHTML += "<br>Всього годин НА ВИХІДНИХ: <button>"+hodynyVyhidni+"</button>"
+	kuda.innerHTML += "<br><b>Зайнятих</b> годин НА ВИХІДНИХ: <button>"+zaynatiVyhidni+"</button>"
+	kuda.innerHTML += "<br><b>Вільних</b> годин НА ВИХІДНИХ: <button>"+(hodynyVyhidni-zaynatiVyhidni)+"</button>"
 }
 
 
@@ -505,14 +612,30 @@ function detectNakladki() {
 	}
   for (let i = 0; i < slots.length - 1; i++) {
     for (let j = i + 1; j < slots.length; j++) {
-      if (slots[i][1][0] === slots[j][1][0] && slots[i][2][0] === slots[j][2][0]) {
-	    	console.log("Перевірка:", slots[i], slots[j])
-        let timeDiff = Math.abs(slots[i][2][1] - slots[j][2][1])
-        if (timeDiff < 40) {
-        	console.log("Знайдена накладка.")
-          nakladki.push([timeDiff, slots[i], slots[j]]);
-        }
-      }
+       if (slots[i][1][0] == slots[j][1][0] && slots[i][1][2] == slots[j][1][2]) {
+       	
+       	// Початок на один час
+       	
+       	if (slots[i][2][0] == slots[j][2][0] && slots[i][2][1] == slots[j][2][1]) {
+      		console.log("Знайдена накладка.")
+   			nakladki.push([0, slots[i], slots[j]]);	
+       	}
+       	
+       	// Початок в різницю на 1 годину, але різниця поч1-кін1 == 00
+       	if (slots[i][2][0] == slots[j][2][2] && Math.abs(slots[i][2][0]-slots[j][2][0]) == 1 && Math.abs(slots[i][2][1]-slots[j][2][3]) == 0) {
+       		if (slots[i][2][1] > 0 || slots[j][2][3] > 0) {
+ 	       		console.log("Знайдена накладка.")
+   				nakladki.push([0, slots[i], slots[j]]);	
+       		}
+       	}
+	    	
+	    	// console.log("Перевірка:", slots[i], slots[j])
+      // 	let timeDiff = Math.abs(slots[i][2][1] - slots[j][2][1])
+      // 	if (timeDiff < 40) {
+      //  		console.log("Знайдена накладка.")
+      //    	nakladki.push([timeDiff, slots[i], slots[j]]);
+      // 	}
+      }	
     }
   }
   if (nakladki == undefined) {
@@ -564,13 +687,8 @@ if (currentDetectNakladki){
 		
 		// [div, [31, 10], [16, 0], "вступний", "ім'я"]
 		for (let i = 0; i < newNakladki.length; i++) {
-			console.log(currentUrl)
 			let nakl = newNakladki[i]
-			let riznText = ""
-			if (nakl[0] > 0){
-				riznText = "<i class=riznyza>"+nakl[0]+" хв.</i>"
-			}
-			spisok.innerHTML += "<center>"+nakl[1][1].join(".")+" "+nakl[1][2].join(":")+" <a href='"+getSearchUrl(nakl[1][3], nakl[1][4])+"'>"+nakl[1][4]+"</a>, "+nakl[2][2].join(":")+" <a href='"+getSearchUrl(nakl[2][3], nakl[2][4])+"'>"+nakl[2][4]+"</a> "+riznText+"</center>"
+			spisok.innerHTML += "<center>"+nakl[1][1][0]+"."+nakl[1][1][1]+" "+nakl[1][2][0]+":"+nakl[1][2][1]+"-"+nakl[1][2][2]+":"+nakl[1][2][3]+" <a href='"+getSearchUrl(nakl[1][3], nakl[1][4])+"'>"+nakl[1][4]+"</a>, "+nakl[2][2][0]+":"+nakl[2][2][1]+"-"+nakl[2][2][2]+":"+nakl[2][2][3]+" <a href='"+getSearchUrl(nakl[2][3], nakl[2][4])+"'>"+nakl[2][4]+"</a> "+"</center>"
 	  }
 		
 	} else {
