@@ -168,18 +168,18 @@ ul > center {
 }
 
 .dropdown-menu > li > input, .dropdown-menu > li > button {
-  display: inline-block !important;
-  clear: both !important;
-  font-weight: 400 !important;
-  line-height: 1.42857143 !important;
-  color: #333 !important;
-  white-space: nowrap !important;
+	display: inline-block !important;
+	clear: both !important;
+	font-weight: 400 !important;
+	line-height: 1.42857143 !important;
+	color: #333 !important;
+	white-space: nowrap !important;
 	height: 28px !important;
-  border-radius: 3px !important;
-  border: 1px solid #e5e6e7 !important;
-  box-shadow: none !important;
-  outline: none !important;
-  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s !important;
+	border-radius: 3px !important;
+	border: 1px solid #e5e6e7 !important;
+	box-shadow: none !important;
+	outline: none !important;
+	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s !important;
 }
 
 .dropdown-menu > li > input {
@@ -194,7 +194,7 @@ ul > center {
 .dropdown-menu > li > input:focus {
 	outline: none !important;
 	border-color: #1ab394 !important;
-  border-width: 1px !important;
+	border-width: 1px !important;
 }
 
 p.kudatuda {
@@ -207,13 +207,13 @@ p > b {
 p > button {
   width: 30px !important;
   // height: 25px !important;
-  padding: 3px !important;
-  border-radius: 6px !important;
-  margin-left: 3px !important;
-  margin-bottom: 3px;
-  background-color: #1ab394 !important;
-  border-color: #1ab394 !important;
-  color: #FFFFFF !important;
+	padding: 3px !important;
+	border-radius: 6px !important;
+	margin-left: 3px !important;
+	margin-bottom: 3px;
+	background-color: #1ab394 !important;
+	border-color: #1ab394 !important;
+	color: #FFFFFF !important;
 	border: none !important;
 }
 
